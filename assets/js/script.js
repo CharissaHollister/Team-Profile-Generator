@@ -1,5 +1,5 @@
-// Code Quiz - Javascript
-//authored by Charissa Hollister 05/04/2022
+// Team Profile Generator
+//authored by Charissa Hollister 06/16/2022
 //**************************** */
 
 
