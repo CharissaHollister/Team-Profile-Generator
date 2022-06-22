@@ -1,20 +1,45 @@
 // Initiates and runs the program
 const fs = require("fs");
 const inquirer = require("inquirer");
-var confirm = require("inquirer-confirm");
+// const confirm = require("inquirer-confirm");
 const generatePage = require("./src/generatePage");
-// const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 // var currentmanager;
 var internSet = [];
 var engineerSet = [];
+
 //"runs Manager as role for first entry"
 function getManagerObj() {
-  const currentManager = new Manager();
-  // console.log(currentManager.getOfficeNumber());
-  return currentManager.getManagerInfo();
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "officeNumber",
+        message: "Enter Office Number:",
+      },
+      {
+        message: "Enter employee name:",
+        type: "input",
+        name: "name",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Enter employee ID:",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Enter employee email:",
+      },
+    ])
+    .then((answer) => {
+      const { name, id, email, officeNumber } = answer;
+      const currentManager = new Manager(name, id, email, officeNumber);
+      console.log(currentManager);
+    });
 }
 getManagerObj();
 //"Prompt for intern or engineer"
@@ -24,51 +49,68 @@ function getNextEmployee() {
       type: "list",
       name: "role",
       message: "Pick employee role",
-      options: ["Engineer", "Intern"],
+      choices: ["Engineer", "Intern"],
     })
     .then(function (data) {
+      // console.log(data);
       if (data.role === "Engineer") {
         //"run Engineer as role"
         //"push engineer to array"
-        engineer = new Engineer();
+        const engineer = new Engineer();
+        engineer.getEngineerInfo();
         engineerSet.push(engineer);
-        return engineerSet;
+        // return engineerSet;
+        additionalEmployees();
       } else if (data.role === "Intern") {
-        //"run Intern as role"
-        //"push intern to array"
-
-        intern = new Intern();
+        const intern = new Intern();
+        intern.getInternInfo();
         internSet.push(intern);
-        return internSet;
+        // return internSet;
+        additionalEmployees();
       } else {
         // invalid entry error and reask?
+        console.log("error");
+        return;
+      }
+    });
+  // .then(function () {
+  //   additionalEmployees();
+  // });
+}
+// getNextEmployee();
+// console.log(internSet, engineerSet, currentManager);
+//"prompt for additional employees Y/N"
+function additionalEmployees() {
+  inquire
+    .prompt([
+      {
+        type: "confirm",
+        name: "more",
+        message: "Do you have more employees to add?",
+      },
+    ])
+    .then((answers) => {
+      if (answers.more) {
+        getNextEmployee();
       }
     });
 }
-
-//"prompt for additional employees Y/N"
-function additionalEmployees() {
-  confirm("Do you have more employees to add?").then(
-    function confirmed() {
-      getNextEmployee();
-    },
-    function cancelled() {
-      return;
-      // invalid entry error and reask?
-    }
-  );
-}
-
+// additionalEmployees();
 //"send manager info to generate page"
 //"send engineer array info to generate page"
 //"send intern array info to generate page"
 
 //overall run the program
 function getAllEmployees() {
-  currentManager = getManagerObj();
-  // getNextEmployee();
-  // additionalEmployees();
-  content = generatePage(currentManager, "engineerSet", "internSet");
+  // const more = "Yes";
+  getManagerObj();
+  getNextEmployee();
+  additionalEmployees();
+  // if (more === "Yes") {
+  //   getNextEmployee();
+  //   additionalEmployees();
+  // } else if (more === "no") {
+  const content = generatePage(currentManager, engineerSet, internSet);
   fs.writeFile("./dist/index.HTML", content, (err) => {
     if (err) throw err;
     console.log("The HTML has been saved!");
@@ -78,6 +120,7 @@ function getAllEmployees() {
     console.log("The CSS has been saved!");
   });
 }
+// }
 // getAllEmployees();
 
 // prompted to enter the team manager’s name, employee ID, email address, and office number //one time
