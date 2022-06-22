@@ -3,7 +3,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 var confirm = require("inquirer-confirm");
 const generatePage = require("./src/generatePage");
-const Employee = require("./lib/Employee");
+// const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
@@ -13,8 +13,8 @@ var engineerSet = [];
 //"runs Manager as role for first entry"
 function getManagerObj() {
   const currentManager = new Manager();
-  // console.log(currentManager);
-  return currentManager.getOfficeNumber();
+  // console.log(currentManager.getOfficeNumber());
+  return currentManager.getManagerInfo();
 }
 getManagerObj();
 //"Prompt for intern or engineer"
