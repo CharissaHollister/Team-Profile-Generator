@@ -1,26 +1,25 @@
-# starter-template
+# Team Profile Generator
 
-Authored by Charissa Hollister 06/16/2022
+Authored by Charissa Hollister 06/22/2022
 
 ## Description
 
-List notes and overall site features here
+Quickly and easily generator a profile of a team of Engineers and/or interns and the manager they report to. Information will be collected in the command-line through a sequence of prompts. Although details can be left blank it is recommended that you answer all questions to have a thorough profile page. A copy your newly populated Team Profile files (index.HTML and style.css) will be saved in the dist folder once you indicate that your team is complete.
 
 ## Features
 
-List notes and features here
+Manager is required for all Team Profiles.  
+Engineer and Interns can be none or many as long as there is 1 reportee on the team.  
+Questions can be left unanswered, however it isn't recommended.  
+Email and GitHub page contains a link for convenience.  
+dist/index.html and dist/style.css is overwritten after each command-line execution, if they are required for use long term it is preferrable to copy both files into your preferred location.  
+NPM inquirer and fs are both utilized.
 
-## Website Access
-
-### URL Live Webpage:
+## Demo:
 
 ### GitHub Repo:
 
-![ScreenShot](relative link to image)
-
-## Future improvement opportunities
-
-List them here
+https://github.com/CharissaHollister/Team-Profile-Generator
 
 ### Minimum customer criteria
 
@@ -45,15 +44,3 @@ WHEN I select the intern option
 THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
-
----
-
-In order to succeed in this Challenge, you’ll apply the following skills:
-
-Build an entire application using object-oriented programming (OOP), separating data and functionality into different constructor functions.
-
-Use modern ES6 class syntax to implement inheritance between classes.
-
-Verify that your code works as intended through automated tests using the Jest framework.
-
-Take user input and use template literals to dynamically generate an entire HTML page directly from the command line.
