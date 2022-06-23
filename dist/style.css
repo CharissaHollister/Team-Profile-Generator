@@ -1,14 +1,45 @@
 /* red header with white letters */
+.header {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
 /* white background  */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 60px;
+}
 
+.manager-card,
+.engineer-card,
+.intern-card {
+  margin: 20px;
+  padding: 10px;
+  box-shadow: 10px 5px 5px darkgray;
+  border: darkgray 0.5pt solid;
+}
 /* cards for each employee */
 /* blue card header */
+.card-header {
+  background-color: blue;
+  color: white;
+  border: black solid 0.5pt;
+  text-align: center;
+}
 /* icon and title  */
 
 /* white box  */
 /* employee id white with shadow  */
 /* info card white with shadow  */
 /* email, office number, github, id, school format black */
-
+p {
+  background-color: rgb(216, 213, 213);
+  color: black;
+  border: black solid 0.5pt;
+  text-align: center;
+  padding: 5px 20px;
+}
 /* email, github, format blue as links */
-
