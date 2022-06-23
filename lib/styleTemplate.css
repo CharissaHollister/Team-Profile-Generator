@@ -8,6 +8,7 @@
 /* card section*/
 .wrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 5px 60px;
@@ -27,17 +28,15 @@
   background-color: blue;
   color: white;
   border: black solid 0.5pt;
-  text-align: center;
+  text-align: left;
+  padding: 5px 20px;
 }
 /* info boxes employee id, email, office number, github, school: format light grey background with border and black text */
 p {
   background-color: rgb(216, 213, 213);
   color: black;
   border: black solid 0.5pt;
-  text-align: center;
+  text-align: left;
   padding: 5px 20px;
 }
-/* email, github, format blue as links */
-/* a {
-  color: blue;
-} */
+/* email, github, format blue as links is default */
