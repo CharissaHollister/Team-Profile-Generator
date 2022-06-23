@@ -1,16 +1,15 @@
-// Initiates and runs the program
+// needed to run the program
 const fs = require("fs");
 const inquirer = require("inquirer");
-// const confirm = require("inquirer-confirm");
 const generatePage = require("./src/generatePage");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-// var currentmanager;
+// Employee info arrays
 var internSet = [];
 var engineerSet = [];
+var managerSet = [];
 
-//"runs Manager as role for first entry"
 function getManagerObj() {
   inquirer
     .prompt([
@@ -20,7 +19,33 @@ function getManagerObj() {
         message: "Enter Office Number:",
       },
       {
-        message: "Enter employee name:",
+        message: "Enter manager name:",
+        type: "input",
+        name: "name",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Enter manager ID:",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Enter manager email:",
+      },
+    ])
+    .then((answer) => {
+      const { name, id, email, officeNumber } = answer;
+      const currentManager = new Manager(name, id, email, officeNumber);
+      managerSet.push(currentManager);
+      getNextEmployee();
+    });
+}
+function getEngineerObj() {
+  inquirer
+    .prompt([
+      {
+        message: "Enter Engineer name:",
         type: "input",
         name: "name",
       },
@@ -34,14 +59,50 @@ function getManagerObj() {
         name: "email",
         message: "Enter employee email:",
       },
+      {
+        type: "input",
+        name: "gitHubUser",
+        message: "Enter GitHub UserName:",
+      },
     ])
     .then((answer) => {
-      const { name, id, email, officeNumber } = answer;
-      const currentManager = new Manager(name, id, email, officeNumber);
-      console.log(currentManager);
+      const { name, id, email, gitHubUser } = answer;
+      const currentEngineer = new Engineer(name, id, email, gitHubUser);
+      managerSet.push(currentEngineer);
+      additionalEmployees();
     });
 }
-getManagerObj();
+function getInternObj() {
+  inquirer
+    .prompt([
+      {
+        message: "Enter intern name:",
+        type: "input",
+        name: "name",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Enter employee ID:",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Enter employee email:",
+      },
+      {
+        type: "input",
+        name: "school",
+        message: "Enter School Name:",
+      },
+    ])
+    .then((answer) => {
+      const { name, id, email, school } = answer;
+      const currentIntern = new Intern(name, id, email, school);
+      internSet.push(currentIntern);
+      additionalEmployees();
+    });
+}
 //"Prompt for intern or engineer"
 function getNextEmployee() {
   inquirer
@@ -55,30 +116,16 @@ function getNextEmployee() {
       // console.log(data);
       if (data.role === "Engineer") {
         //"run Engineer as role"
-        //"push engineer to array"
-        const engineer = new Engineer();
-        engineer.getEngineerInfo();
-        engineerSet.push(engineer);
-        // return engineerSet;
-        additionalEmployees();
+        getEngineerObj();
       } else if (data.role === "Intern") {
-        const intern = new Intern();
-        intern.getInternInfo();
-        internSet.push(intern);
-        // return internSet;
-        additionalEmployees();
+        getInternObj();
       } else {
         // invalid entry error and reask?
         console.log("error");
         return;
       }
     });
-  // .then(function () {
-  //   additionalEmployees();
-  // });
 }
-// getNextEmployee();
-// console.log(internSet, engineerSet, currentManager);
 //"prompt for additional employees Y/N"
 function additionalEmployees() {
   inquire
@@ -95,22 +142,11 @@ function additionalEmployees() {
       }
     });
 }
-// additionalEmployees();
-//"send manager info to generate page"
-//"send engineer array info to generate page"
-//"send intern array info to generate page"
-
-//overall run the program
+//overall function to get all employee info
+//"send manager, intern, engineer arrays info to generate page"
 function getAllEmployees() {
-  // const more = "Yes";
   getManagerObj();
-  getNextEmployee();
-  additionalEmployees();
-  // if (more === "Yes") {
-  //   getNextEmployee();
-  //   additionalEmployees();
-  // } else if (more === "no") {
-  const content = generatePage(currentManager, engineerSet, internSet);
+  const content = generatePage(managerSet, engineerSet, internSet);
   fs.writeFile("./dist/index.HTML", content, (err) => {
     if (err) throw err;
     console.log("The HTML has been saved!");
@@ -120,31 +156,5 @@ function getAllEmployees() {
     console.log("The CSS has been saved!");
   });
 }
-// }
-// getAllEmployees();
-
-// prompted to enter the team manager’s name, employee ID, email address, and office number //one time
-//Employee
-//Manager
-
-// function getEmployeeDataFunc() {
-//   var currentEmployee = new Employee();
-//   //     return data;
-//   console.log(currentEmployee);
-// }
-// getEmployeeDataFunc();
-// const testExample = new Example();
-// const id = await testExample.id;
-// console.log(id);
-
-//prompted to enter each team member information
-//get role
-//Employee
-//Intern or Engineer
-
-// a menu with the option to add an engineer or an intern or to finish building my teammember
-
-// var justAGuy = new Person();
-
-// WHEN I decide to finish building my team
-// THEN I exit the application, and the HTML is generated
+//overall run the program
+getAllEmployees();
