@@ -35,7 +35,7 @@ function getManagerObj() {
       },
     ])
     .then((answer) => {
-      const { name, id, email, officeNumber } = answer;
+      const { officeNumber, name, id, email } = answer;
       const currentManager = new Manager(name, id, email, officeNumber);
       managerSet.push(currentManager);
       getNextEmployee();
@@ -68,7 +68,7 @@ function getEngineerObj() {
     .then((answer) => {
       const { name, id, email, gitHubUser } = answer;
       const currentEngineer = new Engineer(name, id, email, gitHubUser);
-      managerSet.push(currentEngineer);
+      engineerSet.push(currentEngineer);
       additionalEmployees();
     });
 }
@@ -128,7 +128,7 @@ function getNextEmployee() {
 }
 //"prompt for additional employees Y/N"
 function additionalEmployees() {
-  inquire
+  inquirer
     .prompt([
       {
         type: "confirm",
@@ -139,22 +139,28 @@ function additionalEmployees() {
     .then((answers) => {
       if (answers.more) {
         getNextEmployee();
+      } else {
+        writeSite();
       }
     });
 }
-//overall function to get all employee info
-//"send manager, intern, engineer arrays info to generate page"
-function getAllEmployees() {
-  getManagerObj();
+//write html content
+function writeSite() {
   const content = generatePage(managerSet, engineerSet, internSet);
   fs.writeFile("./dist/index.HTML", content, (err) => {
     if (err) throw err;
     console.log("The HTML has been saved!");
+    copyStyle();
   });
+}
+
+//overall function to get all employee info
+//"send manager, intern, engineer arrays info to generate page"
+function copyStyle() {
   fs.copyFile("./lib/styleTemplate.css", "./dist/style.css", (err) => {
     if (err) throw err;
     console.log("The CSS has been saved!");
   });
 }
 //overall run the program
-getAllEmployees();
+getManagerObj();

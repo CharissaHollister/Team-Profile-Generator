@@ -1,10 +1,4 @@
-test("prompts for id,name,email", () => {
-  // const enemy = new Enemy("goblin", "sword");
-  // enemy.strength = 10;
 
-  // expect(enemy.getAttackValue()).toBeGreaterThanOrEqual(5);
-  
-});
 
 //do I need a test for sents info from prompt to employee object??
 test("creates Employee object", () => {
