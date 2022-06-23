@@ -16,6 +16,12 @@ dist/index.html and dist/style.css is overwritten after each command-line execut
 NPM inquirer and fs are both utilized.
 
 ## Demo:
+https://drive.google.com/file/d/1ZI6e9Ig0CYkyMqfhnLsV3y7eWFadR3xn/view
+
+
+https://user-images.githubusercontent.com/103005272/175203708-9211acac-b930-4fa7-9999-95dcda9ab58a.mp4
+
+
 
 ### GitHub Repo:
 
