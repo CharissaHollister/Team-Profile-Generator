@@ -5,14 +5,14 @@
   text-align: center;
   padding: 25px;
 }
-/* white background  */
+/* card section*/
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px 60px;
 }
-
+/* cards for each employee */
 .manager-card,
 .engineer-card,
 .intern-card {
@@ -21,20 +21,15 @@
   box-shadow: 10px 5px 5px darkgray;
   border: darkgray 0.5pt solid;
 }
-/* cards for each employee */
-/* blue card header */
+/* blue card header with white text */
+/* name, icon and role  */
 .card-header {
   background-color: blue;
   color: white;
   border: black solid 0.5pt;
   text-align: center;
 }
-/* icon and title  */
-
-/* white box  */
-/* employee id white with shadow  */
-/* info card white with shadow  */
-/* email, office number, github, id, school format black */
+/* info boxes employee id, email, office number, github, school: format light grey background with border and black text */
 p {
   background-color: rgb(216, 213, 213);
   color: black;
@@ -43,3 +38,6 @@ p {
   padding: 5px 20px;
 }
 /* email, github, format blue as links */
+/* a {
+  color: blue;
+} */

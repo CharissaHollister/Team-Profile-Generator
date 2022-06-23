@@ -1,14 +1,43 @@
 /* red header with white letters */
-/* white background  */
-
+.header {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+/* card section*/
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 60px;
+}
 /* cards for each employee */
-/* blue card header */
-/* icon and title  */
-
-/* white box  */
-/* employee id white with shadow  */
-/* info card white with shadow  */
-/* email, office number, github, id, school format black */
-
+.manager-card,
+.engineer-card,
+.intern-card {
+  margin: 20px;
+  padding: 10px;
+  box-shadow: 10px 5px 5px darkgray;
+  border: darkgray 0.5pt solid;
+}
+/* blue card header with white text */
+/* name, icon and role  */
+.card-header {
+  background-color: blue;
+  color: white;
+  border: black solid 0.5pt;
+  text-align: center;
+}
+/* info boxes employee id, email, office number, github, school: format light grey background with border and black text */
+p {
+  background-color: rgb(216, 213, 213);
+  color: black;
+  border: black solid 0.5pt;
+  text-align: center;
+  padding: 5px 20px;
+}
 /* email, github, format blue as links */
-
+/* a {
+  color: blue;
+} */
