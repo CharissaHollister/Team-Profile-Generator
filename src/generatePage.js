@@ -5,7 +5,7 @@ function generatePage(managerSet, engineerSet, internSet) {
   const managerSec = `<div class="manager-card">
   <div class="card-header">
     <h2>${managerSet[0].name}</h2>
-    <icon></icon><h2>${managerSet[0].role}</h2>
+    <icon href="https://static.thenounproject.com/png/4926385-200.png"></icon><h2>${managerSet[0].role}</h2>
   </div>
   <div class="card-body">
     <p>ID: ${managerSet[0].id}</p>
@@ -18,7 +18,7 @@ function generatePage(managerSet, engineerSet, internSet) {
     let engineerSecPart = `<div class="engineer-card">
   <div class="card-header">
     <h2>${engineerEmployee.name}</h2>
-    <icon></icon><h2>${engineerEmployee.role}</h2>
+    <icon href="https://static.thenounproject.com/png/2581077-200.png"></icon><h2>${engineerEmployee.role}</h2>
   </div>
   <div class="card-body">
     <p>ID: ${engineerEmployee.id}</p>
@@ -33,7 +33,7 @@ function generatePage(managerSet, engineerSet, internSet) {
     let internSecPart = `<div class="intern-card">
   <div class="card-header">
     <h2>${internEmployee.name}</h2>
-    <icon></icon><h2>${internEmployee.role}</h2>
+    <icon href="https://static.thenounproject.com/png/4308743-200.png"></icon><h2>${internEmployee.role}</h2>
   </div>
   <div class="card-body">
     <p>ID: ${internEmployee.id}</p>
